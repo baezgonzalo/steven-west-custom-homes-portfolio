@@ -94,6 +94,41 @@
     window.location.href = mailto;
   });
 
+  const reveal = document.querySelector('[data-reveal]');
+  if (reveal && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const revealLink = reveal.querySelector('.reveal-copy a');
+    const clamp = (value) => Math.max(0, Math.min(1, value));
+    let scheduled = false;
+    reveal.classList.add('is-ready');
+
+    function updateReveal() {
+      const rect = reveal.getBoundingClientRect();
+      const scrollRange = Math.max(1, rect.height - window.innerHeight);
+      const progress = clamp(-rect.top / scrollRange);
+      const expansion = clamp(progress / 0.55);
+      const copyOpacity = clamp((progress - 0.50) / 0.15);
+      const mobile = window.innerWidth <= 680;
+      reveal.style.setProperty('--reveal-x', `${((mobile ? 9 : 26) * (1 - expansion)).toFixed(2)}%`);
+      reveal.style.setProperty('--reveal-y', `${((mobile ? 25 : 24) * (1 - expansion)).toFixed(2)}%`);
+      reveal.style.setProperty('--reveal-radius', `${(22 * (1 - expansion)).toFixed(1)}px`);
+      reveal.style.setProperty('--reveal-copy-opacity', copyOpacity.toFixed(3));
+      reveal.style.setProperty('--reveal-preface-opacity', (1 - clamp(progress / 0.08)).toFixed(3));
+      reveal.classList.toggle('is-visible', copyOpacity > 0.05);
+      revealLink.tabIndex = copyOpacity < 0.10 ? -1 : 0;
+      scheduled = false;
+    }
+
+    function scheduleReveal() {
+      if (scheduled) return;
+      scheduled = true;
+      window.requestAnimationFrame(updateReveal);
+    }
+
+    window.addEventListener('scroll', scheduleReveal, { passive: true });
+    window.addEventListener('resize', scheduleReveal);
+    updateReveal();
+  }
+
   const year = document.getElementById('year');
   if (year) year.textContent = String(new Date().getFullYear());
 })();

@@ -26,3 +26,23 @@
 :root{--brass:#87673e}.button:hover{background:#6e5435;border-color:#6e5435}.filter.active span{color:#e2c9a3}
 .brand-mark{background:url("assets/logo-mark.svg") center/contain no-repeat;border:0;font-size:0}.brand-mark-line{display:none}
 .brand-footer .brand-mark{filter:brightness(1.5)}
+.detail-hero-empty{background:#3f3a33}.detail-hero-empty .hero-shade{background:linear-gradient(90deg,rgba(19,18,16,.9),rgba(19,18,16,.45))}.detail-hero-art{position:absolute;inset:0;background:radial-gradient(circle at 76% 30%,rgba(178,148,104,.24),transparent 32%),linear-gradient(135deg,#64584a,#2c2a27)}.detail-hero-art:before,.detail-hero-art:after{content:"";position:absolute;border:1px solid rgba(232,214,185,.25);pointer-events:none}.detail-hero-art:before{width:39%;height:62%;right:12%;bottom:-9%;transform:skewY(-9deg)}.detail-hero-art:after{width:24%;height:36%;right:20%;bottom:2%;border-bottom:0}
+
+/* A single, scroll-expanded photograph introduces Steven's documented approach. */
+.reveal-section{height:220svh;background:var(--paper);isolation:isolate}
+.reveal-stage{position:sticky;top:0;height:100svh;min-height:540px;overflow:hidden}
+.reveal-preface{position:absolute;top:8%;left:50%;width:min(900px,88vw);transform:translateX(-50%);text-align:center;font-family:var(--serif);font-size:clamp(2.7rem,5.2vw,5.8rem);line-height:1.05;color:var(--ink);letter-spacing:-.04em;opacity:var(--reveal-preface-opacity,1)}
+.reveal-frame{position:absolute;inset:0;z-index:1;overflow:hidden;background:#4e463a;color:#fff}
+.reveal-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+.reveal-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(18,18,16,.68),rgba(18,18,16,.2) 68%,rgba(18,18,16,.1))}
+.reveal-copy{position:absolute;z-index:2;left:50%;bottom:0;transform:translateX(-50%);padding-bottom:clamp(88px,12vh,140px)}
+.reveal-copy h2{font-size:clamp(4.5rem,8vw,9rem);max-width:900px;margin:18px 0 18px}
+.reveal-copy h2 em{color:#e5ccaa}
+.reveal-copy>p:not(.eyebrow){max-width:480px;font-size:clamp(1rem,1.2vw,1.15rem);line-height:1.7;color:#eee6dc}
+.reveal-copy .text-link{margin-top:26px}
+.reveal-image-note{position:absolute;z-index:2;right:clamp(18px,4vw,52px);bottom:25px;font-size:.63rem;letter-spacing:.03em;color:#f5eee5}
+.reveal-section.is-ready .reveal-frame{clip-path:inset(var(--reveal-y,24%) var(--reveal-x,26%) round var(--reveal-radius,22px))}
+.reveal-section.is-ready .reveal-copy{opacity:var(--reveal-copy-opacity,0)}
+.reveal-section.is-ready:not(.is-visible) .reveal-copy{pointer-events:none}
+@media(max-width:680px){.reveal-section{height:195svh}.reveal-stage{min-height:0}.reveal-preface{top:9%;font-size:clamp(2.6rem,11vw,4rem)}.reveal-frame img{object-position:57% center}.reveal-shade{background:linear-gradient(0deg,rgba(13,13,12,.73),rgba(13,13,12,.14) 70%)}.reveal-copy{padding-bottom:104px}.reveal-copy h2{font-size:clamp(3.8rem,11vw,5.5rem)}.reveal-copy>p:not(.eyebrow){max-width:310px}.reveal-image-note{left:18px;right:18px;bottom:76px;font-size:.57rem}}
+@media(prefers-reduced-motion:reduce){.reveal-section{height:auto}.reveal-stage{position:relative;height:78svh;min-height:560px}.reveal-preface{display:none}.reveal-frame{clip-path:none!important}.reveal-copy{opacity:1!important;pointer-events:auto!important}}

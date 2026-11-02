@@ -10,7 +10,19 @@ SOURCE = ROOT / "source-images"
 DESTINATION = ROOT / "dist" / "assets"
 DESTINATION.mkdir(parents=True, exist_ok=True)
 
-for name in ("concept-exterior", "concept-staircase", "concept-living-room", "concept-kitchen"):
+for name in (
+    "concept-exterior",
+    "concept-staircase",
+    "concept-living-room",
+    "concept-kitchen",
+    "concept-sterling-card",
+    "concept-holiday-card",
+    "concept-christmas-card",
+    "concept-sterling-detail",
+    "concept-holiday-detail",
+    "concept-christmas-detail",
+    "concept-reveal",
+):
     source = SOURCE / f"{name}.png"
     target = DESTINATION / f"{name}.webp"
     with Image.open(source) as image:
